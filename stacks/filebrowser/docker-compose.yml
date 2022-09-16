@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:
+  fileserver:
+    # https://filebrowser.org/installation#docker
+    image: filebrowser/filebrowser:latest
+    volumes:
+      - data:/srv
+    ports:
+      - 80
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: 
+          - node.labels.capabilities.storage==yes
+volumes:
+  data:
+    name: ${USER}-volume
