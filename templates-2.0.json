@@ -3,7 +3,7 @@
   "templates": [
     {
       "type": 2,
-      "title": "File Browser",
+      "title": "FileBrowser",
       "description": "A web-based GUI for browsing volumes",
       "note": "Deploys and instance of filebrowser/filebrowser",
       "categories": ["storage", "web"],
