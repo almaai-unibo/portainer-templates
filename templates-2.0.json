@@ -760,6 +760,33 @@
     },
     {
       "type": 2,
+      "title": "Jupyter",
+      "description": "Jupyter notebook",
+      "note": "Refer to the <a href=\"https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html\">Docker stacks documentation page</a>",
+      "categories": ["web", "cms"],
+      "platform": "linux",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/207px-Jupyter_logo.svg.png",
+      "repository": {
+        "url": "https://github.com/pikalab-unibo/portainer-templates",
+        "stackfile": "stacks/jupyter/docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "NOTEBOOK_TYPE",
+          "label": "Notebook type",
+          "description": "Identifier of the image jupyter/NOTEBOOK_TYPE-notebook image. Options: base, minimal, r, scipy, tensorflow, datascience, pyspark, all-spark. Default: scipy.",
+          "default": "scipy"
+        },
+        {
+          "name": "NOTEBOOK_VERSION",
+          "label": "Notebook version",
+          "description": "Actual version of the jupyter/NOTEBOOK_TYPE-notebook image. Default: latest.",
+          "default": "latest"
+        }
+      ]
+    },
+    {
+      "type": 2,
       "title": "Portainer Agent",
       "description": "Manage all the resources in your Swarm cluster",
       "note": "The agent will be deployed globally inside your cluster and available on port 9001.",
