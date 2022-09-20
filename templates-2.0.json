@@ -726,10 +726,35 @@
         "stackfile": "stacks/filebrowser/docker-compose.yml"
       },
       "env": [
-          {
+        {
           "name": "USER",
           "label": "User's volume",
           "description": "The username of the user owing the persinstent storage"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "XWiki",
+      "description": "An XWiki instance based in MySQL 5.7",
+      "note": "Deploys an XWiki service backed by a MySQL 5.7 DBMS",
+      "categories": ["web"],
+      "platform": "linux",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Logo-xwikiorange.svg/162px-Logo-xwikiorange.svg.png",
+      "repository": {
+        "url": "https://github.com/pikalab-unibo/portainer-templates",
+        "stackfile": "stacks/xwiki/docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "DB_VOLUME",
+          "label": "Volume to be used for persisting the DB",
+          "description": "The name of the (pre-existent) volume aimed at storing the DB"
+        },
+        {
+          "name": "XWIKI_VOLUME",
+          "label": "Volume to be used for persisting the XWiki configuration and state files",
+          "description": "The name of the (pre-existent) volume aimed at storing XWiki data"
         }
       ]
     },

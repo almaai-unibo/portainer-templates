@@ -1,0 +1,58 @@
+version: '3.4'
+services:
+  web:
+    image: "xwiki:stable-mysql-tomcat"
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - 8080
+    environment:
+      - DB_USER=xwiki
+      - DB_PASSWORD=xwiki
+      - DB_HOST=db
+    volumes:
+      - web-volume:/usr/local/xwiki
+    networks:
+      - network
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.labels.capabilities.web == yes]
+  db:
+    image: "mysql:5.7"
+    restart: always
+    volumes:
+      # - ./xwiki.cnf:/etc/mysql/conf.d/xwiki.cnf
+      - db-volume:/var/lib/mysql
+      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=xwiki
+      - MYSQL_USER=xwiki
+      - MYSQL_PASSWORD=xwiki
+      - MYSQL_DATABASE=xwiki
+    networks:
+      - network
+    deploy:
+      placement:
+        constraints: [node.labels.capabilities.storage == yes]
+    configs:
+      - source: init_sql
+        target: /etc/mysql/conf.d/xwiki.cnf
+      - source: xwiki_cfg
+        target: /docker-entrypoint-initdb.d/init.sql
+volumes:
+  db-volume:
+    name: ${DB_VOLUME}
+  web-volume: 
+    name: ${XWIKI_VOLUME}
+networks:
+  network:
+    driver: overlay
+    attachable: true
+configs:
+  init_sql:
+    file: ./init.sql
+  xwiki_cfg:
+    file: ./xwiki.cfg
