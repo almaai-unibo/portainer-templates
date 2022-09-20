@@ -774,14 +774,19 @@
         {
           "name": "NOTEBOOK_TYPE",
           "label": "Notebook type",
-          "description": "Identifier of the image jupyter/NOTEBOOK_TYPE-notebook image. Options: base, minimal, r, scipy, tensorflow, datascience, pyspark, all-spark. Default: scipy.",
+          "description": "Identifier of the image <code>jupyter/NOTEBOOK_TYPE-notebook</code> image. Options: <code>base</code>, <code>minimal</code>, <code>r</code>, <code>scipy</code>, <code>tensorflow</code>, <code>datascience</code>, <code>pyspark</code>, <code>all-spark</code>. Default: <code>scipy</code>.",
           "default": "scipy"
         },
         {
           "name": "NOTEBOOK_VERSION",
           "label": "Notebook version",
-          "description": "Actual version of the jupyter/NOTEBOOK_TYPE-notebook image. Default: latest.",
+          "description": "Actual version of the <code>jupyter/NOTEBOOK_TYPE-notebook</code> image. Default: <code>latest</code>.",
           "default": "latest"
+        },
+        {
+          "name": "VOLUME",
+          "label": "Persistent volume",
+          "description": "Name of the persistent volume to attach to the notebook on the path <code>/home/jovyan/persistent</code>"
         }
       ]
     },
