@@ -761,9 +761,9 @@
     {
       "type": 2,
       "title": "Jupyter",
-      "description": "Jupyter notebook",
+      "description": "Jupyter Notebook",
       "note": "Refer to the <a href=\"https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html\">Docker stacks documentation page</a>",
-      "categories": ["web", "cms"],
+      "categories": ["ai", "machine-learning"],
       "platform": "linux",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/207px-Jupyter_logo.svg.png",
       "repository": {
@@ -774,19 +774,45 @@
         {
           "name": "NOTEBOOK_TYPE",
           "label": "Notebook type",
-          "description": "Identifier of the image <code>jupyter/NOTEBOOK_TYPE-notebook</code> image. Options: <code>base</code>, <code>minimal</code>, <code>r</code>, <code>scipy</code>, <code>tensorflow</code>, <code>datascience</code>, <code>pyspark</code>, <code>all-spark</code>. Default: <code>scipy</code>.",
+          "description": "Identifier of the image jupyter/NOTEBOOK_TYPE-notebook image. Options: base, minimal, r, scipy, tensorflow, datascience, pyspark, all-spark. Default: scipy.",
           "default": "scipy"
         },
         {
           "name": "NOTEBOOK_VERSION",
           "label": "Notebook version",
-          "description": "Actual version of the <code>jupyter/NOTEBOOK_TYPE-notebook</code> image. Default: <code>latest</code>.",
+          "description": "Actual version of the jupyter/NOTEBOOK_TYPE-notebook image. Default: latest.",
           "default": "latest"
         },
         {
           "name": "VOLUME",
           "label": "Persistent volume",
-          "description": "Name of the persistent volume to attach to the notebook on the path <code>/home/jovyan/persistent</code>"
+          "description": "Name of the persistent volume to attach to the notebook on the path /home/jovyan/persistent"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "Jupyter (GPU Nvidia)",
+      "description": "Jupyter Notebook with Nvidia support",
+      "note": "Refer to the <a href=\"https://hub.docker.com/r/cschranz/gpu-jupyter\"><code>cschranz/gpu-jupyter</code> image</a> on DockerHub",
+      "categories": ["ai", "machine-learning", "gpu"],
+      "platform": "linux",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/207px-Jupyter_logo.svg.png",
+      "repository": {
+        "url": "https://github.com/pikalab-unibo/portainer-templates",
+        "stackfile": "stacks/jupyter-gpu/docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "VERSION",
+          "label": "Notebook version",
+          "description": "Actual version of the cschranz/gpu-jupyter:VERSION image. Default: latest.",
+          "default": "latest"
+        },
+        {
+          "name": "VOLUME",
+          "label": "Persistent volume",
+          "description": "Name of the persistent volume to attach to the notebook on the path /home/jovyan/persistent"
         }
       ]
     },

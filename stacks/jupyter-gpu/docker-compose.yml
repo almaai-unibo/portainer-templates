@@ -1,0 +1,27 @@
+version: '3.4'
+
+# docker run -it --rm -p 10000:8888 -v "${PWD}":/home/jovyan/work jupyter/datascience-notebook:0fd03d9356de
+
+services:
+  # https://hub.docker.com/r/cschranz/gpu-jupyter
+  jupyter:
+    image: cschranz/gpu-jupyter:${VERSION}
+    volumes:
+      - data:/home/jovyan/persistent
+    ports:
+      - 8888
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: 
+          - node.labels.capabilities.npu==nvidia
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+              driver: nvidia
+              count: 1
+volumes:
+  data:
+    name: ${VOLUME}
