@@ -715,6 +715,26 @@
     },
     {
       "type": 2,
+      "title": "FileBrowser",
+      "description": "A web-based GUI for browsing volumes",
+      "note": "Deploys and instance of filebrowser/filebrowser",
+      "categories": ["storage"],
+      "platform": "linux",
+      "logo": "https://www.gitbook.com/cdn-cgi/image/width=40,height=40,fit=contain,dpr=2,format=auto/https%3A%2F%2F3149836655-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-M8KDxOujDoPpJyJJ5_i%252Favatar-1590579241040.png%3Fgeneration%3D1590579241552005%26alt%3Dmedia",
+      "repository": {
+        "url": "https://github.com/pikalab-unibo/portainer-templates",
+        "stackfile": "stacks/filebrowser/docker-compose.yml"
+      },
+      "env": [
+          {
+          "name": "USER",
+          "label": "User's volume",
+          "description": "The username of the user owing the persinstent storage"
+        }
+      ]
+    },
+    {
+      "type": 2,
       "title": "Portainer Agent",
       "description": "Manage all the resources in your Swarm cluster",
       "note": "The agent will be deployed globally inside your cluster and available on port 9001.",
