@@ -761,7 +761,7 @@
     {
       "type": 2,
       "title": "Jupyter",
-      "description": "Jupyter Notebook",
+      "description": "Jupyter Notebook (no GPU)",
       "note": "Refer to the <a href=\"https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html\">Docker stacks documentation page</a>",
       "categories": ["ai", "machine-learning"],
       "platform": "linux",
