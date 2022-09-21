@@ -1,7 +1,5 @@
 version: '3.4'
 
-# docker run -it --rm -p 10000:8888 -v "${PWD}":/home/jovyan/work jupyter/datascience-notebook:0fd03d9356de
-
 services:
   # https://hub.docker.com/r/cschranz/gpu-jupyter
   jupyter:
@@ -16,12 +14,19 @@ services:
       placement:
         constraints: 
           - node.labels.capabilities.npu==nvidia
-      resources:
-        reservations:
-          devices:
-            - capabilities: [gpu]
-              driver: nvidia
-              count: 1
+# The resources.reservation.devices option is not currently available in Swarm. 
+# Workaround: specifying the devices is not needed if the default runtime
+# of the docker daemon running the container is `nvidia`.
+# So we're exploiting 2 conventions here:
+# 1. guaranteeing this service is executed on a node having the nvidia capability (via the constraint above)
+# 2. guaranteeing all nodes labelled as `node.labels.capabilities.npu==nvidia` have `nvidia` as their default runtime
+# cf. https://github.com/NVIDIA/nvidia-docker/wiki/Advanced-topics
+      # resources:
+      #   reservations:
+      #     devices:
+      #       - capabilities: [gpu]
+      #         driver: nvidia
+      #         count: 1
 volumes:
   data:
     name: ${VOLUME}
