@@ -40,7 +40,7 @@ services:
     configs:
       - source: init_sql
         target: /docker-entrypoint-initdb.d/init.sql
-      - source: xwiki_cfg
+      - source: xwiki_cnf
         target: /etc/mysql/conf.d/xwiki.cnf
 volumes:
   db-volume:
@@ -54,5 +54,5 @@ networks:
 configs:
   init_sql:
     file: ./init.sql
-  xwiki_cfg:
-    file: ./xwiki.cfg
+  xwiki_cnf:
+    file: ./xwiki.cnf
