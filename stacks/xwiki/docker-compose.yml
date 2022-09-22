@@ -39,9 +39,9 @@ services:
         constraints: [node.labels.capabilities.storage == yes]
     configs:
       - source: init_sql
-        target: /etc/mysql/conf.d/xwiki.cnf
-      - source: xwiki_cfg
         target: /docker-entrypoint-initdb.d/init.sql
+      - source: xwiki_cfg
+        target: /etc/mysql/conf.d/xwiki.cnf
 volumes:
   db-volume:
     name: ${DB_VOLUME}
