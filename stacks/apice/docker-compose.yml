@@ -10,6 +10,7 @@ services:
       - DB_USER=xwiki
       - DB_PASSWORD=xwiki
       - DB_HOST=db
+      - CONTEXT_PATH=${BASE_PATH}
     volumes:
       - web-volume:/usr/local/xwiki
     networks:
