@@ -845,6 +845,12 @@
           "name": "CONF_VOLUME",
           "label": "Persistent volume",
           "description": "Name of the persistent volume to attach hosting the NGINX configuration"
+        },
+        {
+          "name": "PUBLIC_IP",
+          "label": "Public IP:",
+          "description": "Public IP for the container (Must be in 192.168.14.[129-253])",
+          "default": "192.168.14.253"
         }
       ]
     },
