@@ -823,7 +823,7 @@
       "note": "Refer to the <a href=\"https://hub.docker.com/_/nginx\">Docker image documentation page</a>",
       "categories": ["web"],
       "platform": "linux",
-      "logo": "https://en.wikipedia.org/wiki/Nginx#/media/File:Nginx_logo.svg",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/320px-Nginx_logo.svg.png",
       "repository": {
         "url": "https://github.com/pikalab-unibo/portainer-templates",
         "stackfile": "stacks/nginx/docker-compose.yml"
