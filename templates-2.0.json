@@ -793,7 +793,7 @@
           "name": "BASE_PATH",
           "label": "Base path",
           "description": "Relative path w.r.t. the service domain",
-          "default": "/apice"
+          "default": "apice"
         }
       ]
     },
