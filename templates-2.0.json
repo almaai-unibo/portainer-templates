@@ -854,9 +854,15 @@
         },
         {
           "name": "PUBLIC_NETWORK",
-          "label": "Public network name:",
+          "label": "Public network name",
           "description": "Public virtual network for the container",
           "default": "stairwai-public-network"
+        },
+        {
+          "name": "PRIVILEGED",
+          "label": "Privileged",
+          "description": "Whether to run the container in privileged mode or not",
+          "default": "false"
         }
       ]
     },
