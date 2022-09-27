@@ -818,6 +818,38 @@
     },
     {
       "type": 2,
+      "title": "Nginx",
+      "description": "Persistent NGINX reverse proxy",
+      "note": "Refer to the <a href=\"https://hub.docker.com/_/nginx\">Docker image documentation page</a>",
+      "categories": ["web"],
+      "platform": "linux",
+      "logo": "https://en.wikipedia.org/wiki/Nginx#/media/File:Nginx_logo.svg",
+      "repository": {
+        "url": "https://github.com/pikalab-unibo/portainer-templates",
+        "stackfile": "stacks/nginx/docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "HTTP_PORT",
+          "label": "HTTP port",
+          "description": "Port upon which the service will list for HTTP requests",
+          "default": "8080"
+        },
+        {
+          "name": "HTTPS_PORT",
+          "label": "HTTPS port",
+          "description": "Port upon which the service will list for HTTPS requests",
+          "default": "4443"
+        },
+        {
+          "name": "CONF_VOLUME",
+          "label": "Persistent volume",
+          "description": "Name of the persistent volume to attach hosting the NGINX configuration"
+        }
+      ]
+    },
+    {
+      "type": 2,
       "title": "Portainer Agent",
       "description": "Manage all the resources in your Swarm cluster",
       "note": "The agent will be deployed globally inside your cluster and available on port 9001.",

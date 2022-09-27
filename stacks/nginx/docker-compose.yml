@@ -1,0 +1,24 @@
+version: '3.4'
+services:
+  nginx:
+    image: "nginx:latest"
+    restart: always
+    ports:
+      - ${HTTP_PORT}:8080
+      - ${HTTPS_PORT}:443
+    volumes:
+      - cfg-volume:/etc/nginx
+    networks:
+      - network
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.labels.capabilities.web == yes]
+volumes:
+  cfg-volume:
+    name: ${CONF_VOLUME}
+networks:
+  web-network:
+    driver: overlay
+    attachable: true
