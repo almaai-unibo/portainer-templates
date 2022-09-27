@@ -25,6 +25,8 @@ services:
       NB_GID: 0
       NB_GROUP: root
       CHOWN_HOME: 'yes'
+      GRANT_SUDO: 'yes'
+      NOTEBOOK_ARGS: '--allow-root'
     volumes:
       - volume:/home/$NB_USER/nginx
     networks:
