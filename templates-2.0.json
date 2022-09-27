@@ -760,6 +760,39 @@
     },
     {
       "type": 2,
+      "title": "Apice",
+      "description": "An XWiki instance tailored for Omicini's group",
+      "note": "Deploys an XWiki service backed by a MySQL 5.7 DBMS, with some fancy defaults",
+      "categories": ["web", "cms"],
+      "platform": "linux",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Logo-xwikiorange.svg/162px-Logo-xwikiorange.svg.png",
+      "repository": {
+        "url": "https://github.com/pikalab-unibo/portainer-templates",
+        "stackfile": "stacks/apice/docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "DB_VOLUME",
+          "label": "DB volume name",
+          "description": "The name of the (pre-existent) volume aimed at persisting the DB",
+          "default": "apice-db-volume"
+        },
+        {
+          "name": "XWIKI_VOLUME",
+          "label": "XWiki volume name",
+          "description": "The name of the (pre-existent) volume aimed at persisting the XWiki configuration and state files",
+          "default": "apice-xwiki-volume"
+        },
+        {
+          "name": "EXTERNAL_NETWORK",
+          "label": "External network name",
+          "description": "The name external network the web service should be attached to",
+          "default": "web-entry_private-network"
+        }
+      ]
+    },
+    {
+      "type": 2,
       "title": "Jupyter",
       "description": "Jupyter Notebook (no GPU)",
       "note": "Refer to the <a href=\"https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html\">Docker stacks documentation page</a>",

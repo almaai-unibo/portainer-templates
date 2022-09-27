@@ -1,0 +1,60 @@
+version: '3.9'
+services:
+  web:
+    image: "xwiki:stable-mysql-tomcat"
+    depends_on:
+      - db
+    restart: always
+    hostname: apice-web
+    environment:
+      - DB_USER=xwiki
+      - DB_PASSWORD=xwiki
+      - DB_HOST=db
+    volumes:
+      - web-volume:/usr/local/xwiki
+    networks:
+      - internal-network
+      - external-network
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.labels.capabilities.web == yes]
+  db:
+    image: "mysql:5.7"
+    restart: always
+    volumes:
+      # - ./xwiki.cnf:/etc/mysql/conf.d/xwiki.cnf
+      - db-volume:/var/lib/mysql
+      # - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=xwiki
+      - MYSQL_USER=xwiki
+      - MYSQL_PASSWORD=xwiki
+      - MYSQL_DATABASE=xwiki
+    networks:
+      - internal-network
+    deploy:
+      placement:
+        constraints: [node.labels.capabilities.storage == yes]
+    configs:
+      - source: init_sql
+        target: /docker-entrypoint-initdb.d/init.sql
+      - source: xwiki_cnf
+        target: /etc/mysql/conf.d/xwiki.cnf
+volumes:
+  db-volume:
+    name: ${DB_VOLUME}
+  web-volume: 
+    name: ${XWIKI_VOLUME}
+networks:
+  internal-network:
+    driver: overlay
+  external-network:
+    name: ${EXTERNAL_NETWORK}
+    external: true
+configs:
+  init_sql:
+    file: ./init.sql
+  xwiki_cnf:
+    file: ./xwiki.cnf
