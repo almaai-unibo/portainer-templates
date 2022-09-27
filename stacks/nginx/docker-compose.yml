@@ -15,6 +15,26 @@ services:
       replicas: 1
       placement:
         constraints: [node.labels.capabilities.web == yes]
+  notebook:
+    restart: always
+    image: jupyter/base-notebook:latest
+    user: root
+    environment:
+      NB_UID: 0
+      NB_USER: root
+      NB_GID: 0
+      NB_GROUP: root
+      CHOWN_HOME: yes
+    volume:
+      - volume:/home/$NB_USER/nginx
+    networks:
+      - network
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: 
+          - node.labels.capabilities.cpu==yes
 volumes:
   volume:
     name: ${CONF_VOLUME}
