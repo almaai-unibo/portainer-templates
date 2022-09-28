@@ -16,6 +16,10 @@ services:
     networks:
       external-network:
         ipv4_address: ${PUBLIC_IP}
+    dns:
+      - 137.204.78.3
+      - 137.204.25.71
+      - 137.204.25.213
     tmpfs:
       - /run
       - /tmp
