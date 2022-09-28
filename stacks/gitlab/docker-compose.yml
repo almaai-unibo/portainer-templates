@@ -19,7 +19,7 @@ services:
       mode: replicated
       replicas: 1
       placement:
-        constraints: [node.labels.capabilities.web == yes]
+        constraints: [node.labels.capabilities.storage == yes]
 networks:
   external-network:
     name: ${EXTERNAL_NETWORK}
