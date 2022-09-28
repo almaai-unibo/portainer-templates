@@ -788,6 +788,12 @@
           "label": "External network name",
           "description": "The name external network the web service should be attached to",
           "default": "stairwai-public-network"
+        },
+        {
+          "name": "HOSTNAME",
+          "label": "Hostname",
+          "description": "Should possibly correspond to the DNS entry for the service IP",
+          "default": "dvcs.apice.unibo.it"
         }
       ]
     },

@@ -3,7 +3,7 @@ services:
   web:
     image: "gitlab/gitlab-ee:${GITLAB_VERSION}"
     restart: always
-    hostname: dvcs.apice.unibo.it
+    hostname: ${HOSTNAME}
     environment:
       - DB_USER=xwiki
       - DB_PASSWORD=xwiki
