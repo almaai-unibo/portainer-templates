@@ -794,6 +794,12 @@
           "label": "Hostname",
           "description": "Should possibly correspond to the DNS entry for the service IP",
           "default": "dvcs.apice.unibo.it"
+        },
+        {
+          "name": "PUBLIC_IP",
+          "label": "Public IP",
+          "description": "Public IP for the container (Must be in 192.168.11.[192-253])",
+          "default": "192.168.11.193"
         }
       ]
     },

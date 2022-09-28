@@ -14,7 +14,8 @@ services:
       - ${GITLAB_HOME}/logs:/var/log/gitlab
       - ${GITLAB_HOME}/data:/var/opt/gitlab
     networks:
-      - external-network
+      external-network:
+        ipv4_address: ${PUBLIC_IP}
     deploy:
       mode: replicated
       replicas: 1
