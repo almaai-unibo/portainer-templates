@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  web:
+    image: "gitlab/gitlab-ee:${GITLAB_VERSION}"
+    restart: always
+    hostname: dvcs.apice.unibo.it
+    environment:
+      - DB_USER=xwiki
+      - DB_PASSWORD=xwiki
+      - DB_HOST=db
+      - CONTEXT_PATH=${BASE_PATH}
+    volumes:
+      - ${GITLAB_HOME}/config:/etc/gitlab
+      - ${GITLAB_HOME}/logs:/var/log/gitlab
+      - ${GITLAB_HOME}/data:/var/opt/gitlab
+    networks:
+      - external-network
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.labels.capabilities.web == yes]
+networks:
+  external-network:
+    name: ${EXTERNAL_NETWORK}
+    external: true

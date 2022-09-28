@@ -760,6 +760,39 @@
     },
     {
       "type": 2,
+      "title": "Gitlab Self hosted",
+      "description": "Gitlab Self Hosted Instance",
+      "note": "TBD",
+      "categories": ["web", "git"],
+      "platform": "linux",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/GitLab_logo.svg/320px-GitLab_logo.svg.png",
+      "repository": {
+        "url": "https://github.com/pikalab-unibo/portainer-templates",
+        "stackfile": "stacks/gitlab/docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "GITLAB_VERSION",
+          "label": "Gitlab version",
+          "description": "Version tag of the image to use",
+          "default": "latest"
+        },
+        {
+          "name": "GITLAB_HOME",
+          "label": "GitLab Home Path on the host",
+          "description": "The path on the host where GitLab data and configuration are persisted",
+          "default": "/mnt/data1/gitlab"
+        },
+        {
+          "name": "EXTERNAL_NETWORK",
+          "label": "External network name",
+          "description": "The name external network the web service should be attached to",
+          "default": "stairwai-public-network"
+        }
+      ]
+    },
+    {
+      "type": 2,
       "title": "Apice",
       "description": "An XWiki instance tailored for Omicini's group",
       "note": "Deploys an XWiki service backed by a MySQL 5.7 DBMS, with some fancy defaults",
