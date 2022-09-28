@@ -16,6 +16,9 @@ services:
     networks:
       external-network:
         ipv4_address: ${PUBLIC_IP}
+    tmpfs:
+      - /run
+      - /tmp
     deploy:
       mode: replicated
       replicas: 1
