@@ -6,7 +6,7 @@ services:
     volumes:
       - ${GITLAB_PATH}:/etc/gitlab-runner
       - /var/run/docker.sock:/var/run/docker.sock
-    dns:
+    extra_hosts:
       - ${INSTANCE_HOSTNAME}:${INSTANCE_IP}
     deploy:
       mode: replicated
