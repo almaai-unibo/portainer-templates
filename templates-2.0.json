@@ -765,7 +765,7 @@
       "note": "TBD",
       "categories": ["web", "git"],
       "platform": "linux",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/GitLab_logo.svg/320px-GitLab_logo.svg.png",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/gitlab_ce.png",
       "repository": {
         "url": "https://github.com/pikalab-unibo/portainer-templates",
         "stackfile": "stacks/gitlab/docker-compose.yml"
@@ -839,6 +839,39 @@
           "label": "Base path",
           "description": "Relative path w.r.t. the service domain",
           "default": "apice"
+        }
+      ]
+    },
+    {
+      "type": 2,
+      "title": "GitLab Runner",
+      "description": "A CI runner for a GitLab instance",
+      "note": "Deploys a runner manager with a persistent configuration",
+      "categories": ["web", "git"],
+      "platform": "linux",
+      "logo": "https://portainer-io-assets.sfo2.digitaloceanspaces.com/logos/gitlab_ce.png",
+      "repository": {
+        "url": "https://github.com/pikalab-unibo/portainer-templates",
+        "stackfile": "stacks/gitlab-runner/docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "GITLAB_PATH",
+          "label": "GitLab Path",
+          "description": "Directory on the host's file system that will contain the runner's configuration",
+          "default": "/mnt/data1/gitlab-runner"
+        },
+        {
+          "name": "INSTANCE_HOSTNAME",
+          "label": "Instance Hostname",
+          "description": "Instance hostname to be remapped",
+          "default": "dvcs.apice.unibo.it"
+        },
+        {
+          "name": "INSTANCE_IP",
+          "label": "Overridden Instance IP",
+          "description": "Instance IP overriding the public one",
+          "default": "192.168.11.193"
         }
       ]
     },
