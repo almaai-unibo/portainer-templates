@@ -4,10 +4,19 @@ services:
   # https://hub.docker.com/r/cschranz/gpu-jupyter
   jupyter:
     image: cschranz/gpu-jupyter:${VERSION}
+    # https://jupyter-docker-stacks.readthedocs.io/en/latest/using/common.html#docker-options
+    user: root
+    environment:
+      NB_USER: ${USER}
+      CHOWN_HOME: 'yes'
+      GRANT_SUDO: 'yes'
+      # pip install jupyter
+      # python -c "from notebook.auth import passwd; print(passwd('$PASSWORD'))"
+      NOTEBOOK_ARGS: "--NotebookApp.password='${PASSWORD_HASH}'"
     volumes:
-      - data:/home/jovyan/persistent
+      - data:/home/${USER}/persistent
     ports:
-      - 8888
+      - ${PORT}:8888
     deploy:
       mode: replicated
       replicas: 1
