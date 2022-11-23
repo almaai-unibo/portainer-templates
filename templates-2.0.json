@@ -901,9 +901,25 @@
           "default": "latest"
         },
         {
+          "name": "USER",
+          "label": "Username",
+          "description": "The name of the user within the container"
+        },
+        {
           "name": "VOLUME",
-          "label": "Persistent volume",
-          "description": "Name of the persistent volume to attach to the notebook on the path /home/jovyan/persistent"
+          "label": "Persistent volume name",
+          "description": "Name of the persistent volume to attach to the notebook on the path /home/${Username}/persistent"
+        },
+        {
+          "name": "PORT",
+          "label": "Port",
+          "description": "The port the Jupyter service will listen upon"
+        },
+        {
+          "name": "PASSWORD_HASH",
+          "label": "Password hash",
+          "description": "The hash of the password attained via pip install jupyter; python -c \"from notebook.auth import passwd; print(passwd('$PASSWORD'))\" (default: 'password')",
+          "default": "argon2:$argon2id$v=19$m=10240,t=10,p=8$HeOTclQuiBRSY1uay1MbKw$ZKCXZmK0VPMu4XRhyd95d4frYk/FTFRgL7G++GBWpc0"
         }
       ]
     },
