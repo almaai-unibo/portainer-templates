@@ -13,6 +13,11 @@ services:
       - ${GITLAB_HOME}/config:/etc/gitlab
       - ${GITLAB_HOME}/logs:/var/log/gitlab
       - ${GITLAB_HOME}/data:/var/opt/gitlab
+      # https://stackoverflow.com/a/59833816
+      - type: tmpfs
+        target: /dev/shm
+        tmpfs:
+           size: 2147483648 # (this means 2GiB)
     networks:
       external-network:
         ipv4_address: ${PUBLIC_IP}
@@ -21,7 +26,7 @@ services:
       - 137.204.25.71
       - 137.204.25.213
     # https://docs.gitlab.com/ee/install/docker.html#devshm-mount-not-having-enough-space-in-docker-container
-    shm_size: '512m'
+    # shm_size: '512m'
     tmpfs:
       - /run
       - /tmp
