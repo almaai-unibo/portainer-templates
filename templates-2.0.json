@@ -1052,10 +1052,9 @@
           "description": "The port the Jupyter service will listen upon"
         },
         {
-          "name": "PASSWORD_HASH",
-          "label": "Password hash",
-          "description": "The hash of the password attained via notebook.auth.passwd('password')",
-          "default": "argon2:$argon2id$v=19$m=10240,t=10,p=8$HeOTclQuiBRSY1uay1MbKw$ZKCXZmK0VPMu4XRhyd95d4frYk/FTFRgL7G++GBWpc0"
+          "name": "PASSWORD_SECRET_NAME",
+          "label": "Password secret name",
+          "description": "The name of the secret containing the password of the user to be used for accessing the Jupyter service"
         }
       ]
     },

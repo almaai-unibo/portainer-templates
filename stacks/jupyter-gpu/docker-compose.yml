@@ -6,13 +6,18 @@ services:
     image: cschranz/gpu-jupyter:${VERSION}
     # https://jupyter-docker-stacks.readthedocs.io/en/latest/using/common.html#docker-options
     user: root
+    configs:
+      - source: password_generator
+        target: /gen-pwd.py
+      - source: start_notebook
+        target: /start-notebook2.sh
+    command: [ "/bin/bash", "/start-notebook2.sh" ]
     environment:
       NB_USER: ${USER}
       CHOWN_HOME: 'yes'
       GRANT_SUDO: 'yes'
-      # pip install jupyter
-      # python -c "from notebook.auth import passwd; print(passwd('$PASSWORD'))"
-      NOTEBOOK_ARGS: "--NotebookApp.password='${PASSWORD_HASH}'"
+    secrets:
+      - jupyter_password
     volumes:
       - data:/home/${USER}/persistent
     ports:
@@ -36,6 +41,16 @@ services:
       #       - capabilities: [gpu]
       #         driver: nvidia
       #         count: 1
+secrets:
+  # mapped into /run/secrets/jupyter_password by default
+  jupyter_password:
+    external: true
+    name: ${PASSWORD_SECRET_NAME}
 volumes:
   data:
     name: ${VOLUME}
+configs:
+  password_generator:
+    file: ./gen-pwd.py
+  start_notebook:
+    file: ./start-notebook2.sh
