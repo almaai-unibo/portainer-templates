@@ -6,13 +6,16 @@ services:
     image: jupyter/${NOTEBOOK_TYPE}-notebook:${NOTEBOOK_VERSION}
     # https://jupyter-docker-stacks.readthedocs.io/en/latest/using/common.html#docker-options
     user: root
+    configs:
+      - source: gen_pwd
+        target: /gen-pwd.py
     environment:
       NB_USER: ${USER}
       CHOWN_HOME: 'yes'
       GRANT_SUDO: 'yes'
       # pip install jupyter
       # python -c "from notebook.auth import passwd; print(passwd('$PASSWORD'))"
-      NOTEBOOK_ARGS: --NotebookApp.password=$$(python -c "from notebook.auth import passwd; print(passwd('`cat /run/secrets/jupyter_password`'))")
+      NOTEBOOK_ARGS: --NotebookApp.password="$$(python /gen-pwd.py)"
     volumes:
       - data:/home/${USER}/persistent
     ports:
@@ -26,9 +29,13 @@ services:
     secrets:
       - jupyter_password
 secrets:
+  # mapped into /run/secrets/jupyter_password by default
   jupyter_password:
     external: true
     name: ${PASSWORD_SECRET_NAME}
 volumes:
   data:
     name: ${VOLUME}
+configs:
+  gen_pwd:
+    file: ./gen-pwd.py
