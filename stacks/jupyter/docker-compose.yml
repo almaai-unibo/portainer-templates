@@ -15,7 +15,7 @@ services:
       GRANT_SUDO: 'yes'
       # pip install jupyter
       # python -c "from notebook.auth import passwd; print(passwd('$PASSWORD'))"
-      NOTEBOOK_ARGS: --NotebookApp.password="$$(python /gen-pwd.py)"
+      NOTEBOOK_ARGS: --NotebookApp.password=$$(python /gen-pwd.py)
     volumes:
       - data:/home/${USER}/persistent
     ports:
