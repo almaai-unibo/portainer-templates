@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.9'
 
 services:
   # https://hub.docker.com/r/cschranz/gpu-jupyter
