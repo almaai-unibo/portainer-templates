@@ -1014,12 +1014,6 @@
           "name": "PASSWORD_SECRET_NAME",
           "label": "Password secret name",
           "description": "The name of the secret containing the password of the user to be used for accessing the Jupyter service"
-        },
-        {
-          "name": "SHM_SIZE",
-          "label": "Shared memory size (in KiB)",
-          "description": "The size of the tmpfs file system to be monunted on the containers' /dev/shm file",
-          "default": "65536"
         }
       ]
     },
@@ -1061,12 +1055,6 @@
           "name": "PASSWORD_SECRET_NAME",
           "label": "Password secret name",
           "description": "The name of the secret containing the password of the user to be used for accessing the Jupyter service"
-        },
-        {
-          "name": "SHM_SIZE",
-          "label": "Shared memory size (in KiB)",
-          "description": "The size of the tmpfs file system to be monunted on the containers' /dev/shm file",
-          "default": "65536"
         }
       ]
     },

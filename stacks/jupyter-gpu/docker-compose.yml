@@ -23,7 +23,8 @@ services:
       - type: tmpfs
         target: /dev/shm
         tmpfs:
-           size: ${SHM_SIZE}
+           # size of shared memory in KiB (e.g. 131072 = 128 * 1024 = 128 MiB)
+           size: 131072
     ports:
       - ${PORT}:8888
     deploy:
