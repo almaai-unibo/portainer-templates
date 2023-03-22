@@ -19,7 +19,11 @@ services:
     secrets:
       - jupyter_password
     volumes:
-      - data:/home/${USER}/persistent
+      - "data:/home/${USER}/persistent"
+      - type: tmpfs
+        target: /dev/shm
+        tmpfs:
+           size: ${SHM_SIZE}
     ports:
       - ${PORT}:8888
     deploy:
