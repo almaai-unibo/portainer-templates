@@ -11,6 +11,6 @@ if [[ -n "${JUPYTERHUB_API_TOKEN}" ]]; then
     exec /usr/local/bin/start-singleuser.sh "$@"
 fi
 
-PWD_HASH="$(python /gen-pwd.py)"
+PWD_HASH="$(python3 /gen-pwd.py)"
 
 jupyter ${DOCKER_STACKS_JUPYTER_CMD} --allow-root --NotebookApp.password=$PWD_HASH ${NOTEBOOK_ARGS} "$@"
