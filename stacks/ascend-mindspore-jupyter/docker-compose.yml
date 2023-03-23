@@ -22,6 +22,7 @@ services:
           - node.labels.capabilities.npu==huawei
     secrets:
       - jupyter_password
+    working_dir: /persistent
 secrets:
   # mapped into /run/secrets/jupyter_password by default
   jupyter_password:
