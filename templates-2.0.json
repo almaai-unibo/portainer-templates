@@ -977,7 +977,7 @@
       "note": "Deploys a Jupyter Notebook with Ascend Minspore support and a persistent volume configuration",
       "categories": ["ai", "machine-learning", "npu", "mindspore"],
       "platform": "linux",
-      "logo": "https://en.wikipedia.org/wiki/File:Huawei_Standard_logo.svg",
+      "logo": "https://seeklogo.com/images/H/huawei-logo-6535FE0552-seeklogo.com.png",
       "repository": {
         "url": "https://github.com/almaai-unibo/portainer-templates",
         "stackfile": "stacks/ascend-mindspore-jupyter/docker-compose.yml"
