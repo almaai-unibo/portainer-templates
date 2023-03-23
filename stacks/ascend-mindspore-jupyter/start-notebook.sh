@@ -13,4 +13,4 @@ fi
 
 PWD_HASH="$(python3 /gen-pwd.py)"
 
-jupyter ${DOCKER_STACKS_JUPYTER_CMD} --allow-root --NotebookApp.password=$PWD_HASH ${NOTEBOOK_ARGS} "$@"
+jupyter ${DOCKER_STACKS_JUPYTER_CMD} --allow-root --NotebookApp.password=$PWD_HASH --ServerApp.ip='0.0.0.0' --ServerApp.port=8888 --ServerApp.open_browser=False ${NOTEBOOK_ARGS} "$@"
