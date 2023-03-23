@@ -972,6 +972,42 @@
     },
     {
       "type": 2,
+      "title": "Ascend Mindspore Jupyter",
+      "description": "Jupyter Notebook with Ascend Mindspore tools",
+      "note": "Deploys a Jupyter Notebook with Ascend Minspore support and a persistent volume configuration",
+      "categories": ["ai", "machine-learning", "npu", "mindspore"],
+      "platform": "linux",
+      "logo": "https://en.wikipedia.org/wiki/File:Huawei_Standard_logo.svg",
+      "repository": {
+        "url": "https://github.com/almaai-unibo/portainer-templates",
+        "stackfile": "stacks/ascend-mindspore-jupyter/docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "MODEL",
+          "label": "Machine's NPU model",
+          "description": "NPUs model installed on the machine. Possible values are '3010' or '9000'. Default: '3010'.",
+          "default": "3010"
+        },
+        {
+          "name": "VOLUME",
+          "label": "Persistent volume name",
+          "description": "Name of the persistent volume to attach to the notebook on the path /persistent"
+        },
+        {
+          "name": "PORT",
+          "label": "Port",
+          "description": "The port the Jupyter service will listen upon"
+        },
+        {
+          "name": "PASSWORD_SECRET_NAME",
+          "label": "Password secret name",
+          "description": "The name of the secret containing the password of the user to be used for accessing the Jupyter service"
+        }
+      ]
+    },
+    {
+      "type": 2,
       "title": "Jupyter",
       "description": "Jupyter Notebook (no GPU)",
       "note": "Refer to the <a href=\"https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html\">Docker stacks documentation page</a>",
