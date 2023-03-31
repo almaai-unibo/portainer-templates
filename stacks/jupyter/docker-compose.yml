@@ -11,6 +11,8 @@ services:
         target: /gen-pwd.py
       - source: start_notebook
         target: /start-notebook2.sh
+      - source: install_stuff
+        target: /install-stuff.py
     command: [ "/bin/bash", "/start-notebook2.sh" ]
     environment:
       NB_USER: ${USER}
@@ -48,3 +50,5 @@ configs:
     file: ./gen-pwd.py
   start_notebook:
     file: ./start-notebook2.sh
+  install_stuff:
+    file: ./install-stuff.py
