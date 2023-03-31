@@ -16,6 +16,17 @@ if [[ "${RESTARTABLE}" == "yes" ]]; then
     wrapper="run-one-constantly"
 fi
 
+if [[ -n "${FURTHER_APT_PACKAGES_TO_INSTALL}" ]]; then
+    /usr/bin/apt-get update
+    echo "/usr/bin/apt-get install -y ${FURTHER_APT_PACKAGES_TO_INSTALL}" 
+    /usr/bin/apt-get install -y ${FURTHER_APT_PACKAGES_TO_INSTALL}
+fi
+
+if [[ -n "${FURTHER_PIP_PACKAGES_TO_INSTALL}" ]]; then
+    echo "/opt/conda/bin/pip install ${FURTHER_PIP_PACKAGES_TO_INSTALL}"
+    /opt/conda/bin/pip ${FURTHER_PIP_PACKAGES_TO_INSTALL}
+fi
+
 PWD_HASH="$(python /gen-pwd.py)"
 
 # shellcheck disable=SC1091,SC2086

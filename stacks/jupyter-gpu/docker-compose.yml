@@ -16,6 +16,8 @@ services:
       NB_USER: ${USER}
       CHOWN_HOME: 'yes'
       GRANT_SUDO: 'yes'
+      FURTHER_APT_PACKAGES_TO_INSTALL: ${FURTHER_APT_PACKAGES}
+      FURTHER_PIP_PACKAGES_TO_INSTALL: ${FURTHER_PIP_PACKAGES}
     secrets:
       - jupyter_password
     volumes:

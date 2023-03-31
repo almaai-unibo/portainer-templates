@@ -1050,6 +1050,16 @@
           "name": "PASSWORD_SECRET_NAME",
           "label": "Password secret name",
           "description": "The name of the secret containing the password of the user to be used for accessing the Jupyter service"
+        },
+        {
+          "name": "FURTHER_APT_PACKAGES",
+          "label": "Further Ubuntu packages",
+          "description": "Space-separated list of Ubuntu packages to be installed in the container. Leave empty if not needed."
+        },
+        {
+          "name": "FURTHER_PIP_PACKAGES",
+          "label": "Further Python packages",
+          "description": "Space separated list of Python packages to be installed in the container, via PIP. Leave empty if not needed."
         }
       ]
     },
@@ -1091,6 +1101,16 @@
           "name": "PASSWORD_SECRET_NAME",
           "label": "Password secret name",
           "description": "The name of the secret containing the password of the user to be used for accessing the Jupyter service"
+        },
+        {
+          "name": "FURTHER_APT_PACKAGES",
+          "label": "Further Ubuntu packages",
+          "description": "Space-separated list of Ubuntu packages to be installed in the container. Leave empty if not needed."
+        },
+        {
+          "name": "FURTHER_PIP_PACKAGES",
+          "label": "Further Python packages",
+          "description": "Space separated list of Python packages to be installed in the container, via PIP. Leave empty if not needed."
         }
       ]
     },
