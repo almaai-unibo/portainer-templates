@@ -1116,6 +1116,67 @@
     },
     {
       "type": 2,
+      "title": "Jupyter + SSH (GPU Nvidia)",
+      "description": "Jupyter Notebook with Nvidia support and SSH access",
+      "note": "Refer to the <a href=\"https://hub.docker.com/r/cschranz/gpu-jupyter\"><code>cschranz/gpu-jupyter</code> image</a> on DockerHub",
+      "categories": ["ai", "machine-learning", "gpu"],
+      "platform": "linux",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Jupyter_logo.svg/207px-Jupyter_logo.svg.png",
+      "repository": {
+        "url": "https://github.com/almaai-unibo/portainer-templates",
+        "stackfile": "stacks/jupyter-gpu-ssh/docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "VERSION",
+          "label": "Notebook version",
+          "description": "Actual version of the cschranz/gpu-jupyter:${Notebook version} image. Default: latest.",
+          "default": "latest"
+        },
+        {
+          "name": "USER",
+          "label": "Username",
+          "description": "The name of the user within the container"
+        },
+        {
+          "name": "VOLUME",
+          "label": "Persistent volume name",
+          "description": "Name of the persistent volume to attach to the notebook on the path /home/${Username}/persistent"
+        },
+        {
+          "name": "PORT",
+          "label": "Port",
+          "description": "The port the Jupyter service will listen upon"
+        },
+        {
+          "name": "SSH_PORT",
+          "label": "SSH Port",
+          "description": "The port the SSH service will listen upon"
+        },
+        {
+          "name": "PASSWORD_SECRET_NAME",
+          "label": "Password secret name",
+          "description": "The name of the secret containing the password of the user to be used for accessing the Jupyter service"
+        },
+        {
+          "name": "FURTHER_APT_PACKAGES",
+          "label": "Further Ubuntu packages",
+          "description": "Space-separated list of Ubuntu packages to be installed in the container. Leave empty if not needed."
+        },
+        {
+          "name": "FURTHER_PIP_PACKAGES",
+          "label": "Further Python packages",
+          "description": "Space separated list of Python packages to be installed in the container, via PIP. Leave empty if not needed."
+        },
+        {
+          "name": "AUTHORIZED_KEYS_CONFIG_NAME",
+          "label": "Authorized Keys config name",
+          "description": "The name of the config containing the authorized public keys which can access the SSH service"
+        }
+      ]
+    },
+    {
+      "type": 2,
       "title": "Nginx",
       "description": "Persistent NGINX reverse proxy",
       "note": "Refer to the <a href=\"https://hub.docker.com/_/nginx\">Docker image documentation page</a>",

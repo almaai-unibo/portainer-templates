@@ -1,0 +1,73 @@
+version: '3.9'
+
+services:
+  # https://hub.docker.com/r/cschranz/gpu-jupyter
+  jupyter:
+    image: cschranz/gpu-jupyter:${VERSION}
+    # https://jupyter-docker-stacks.readthedocs.io/en/latest/using/common.html#docker-options
+    user: root
+    configs:
+      - source: password_generator
+        target: /gen-pwd.py
+      - source: start_notebook
+        target: /start-notebook2.sh
+      - source: authorized_keys
+        target: /home/${USER}/.ssh/authorized_keys
+      - source: sshd_config
+        target: /etc/ssh/sshd_config
+    command: [ "/bin/bash", "/start-notebook2.sh" ]
+    environment:
+      NB_USER: ${USER}
+      CHOWN_HOME: 'yes'
+      GRANT_SUDO: 'yes'
+      FURTHER_APT_PACKAGES_TO_INSTALL: ${FURTHER_APT_PACKAGES}
+      FURTHER_PIP_PACKAGES_TO_INSTALL: ${FURTHER_PIP_PACKAGES}
+    secrets:
+      - jupyter_password
+    volumes:
+      - "data:/home/${USER}/persistent"
+      - type: tmpfs
+        target: /dev/shm
+        tmpfs:
+           # size of shared memory in KiB (e.g. 131072 = 128 * 1024 = 128 MiB)
+           size: 131072
+    ports:
+      - ${PORT}:8888
+      - ${SSH_PORT}:22
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: 
+          - node.labels.capabilities.npu==nvidia
+# The resources.reservation.devices option is not currently available in Swarm. 
+# Workaround: specifying the devices is not needed if the default runtime
+# of the docker daemon running the container is `nvidia`.
+# So we're exploiting 2 conventions here:
+# 1. guaranteeing this service is executed on a node having the nvidia capability (via the constraint above)
+# 2. guaranteeing all nodes labelled as `node.labels.capabilities.npu==nvidia` have `nvidia` as their default runtime
+# cf. https://github.com/NVIDIA/nvidia-docker/wiki/Advanced-topics
+      # resources:
+      #   reservations:
+      #     devices:
+      #       - capabilities: [gpu]
+      #         driver: nvidia
+      #         count: 1
+secrets:
+  # mapped into /run/secrets/jupyter_password by default
+  jupyter_password:
+    external: true
+    name: ${PASSWORD_SECRET_NAME}
+volumes:
+  data:
+    name: ${VOLUME}
+configs:
+  password_generator:
+    file: ./gen-pwd.py
+  start_notebook:
+    file: ./start-notebook2.sh
+  authorized_keys:
+    external: true
+    name: ${AUTHORIZED_KEYS_CONFIG_NAME}
+  sshd_config:
+    file: ./sshd_config
