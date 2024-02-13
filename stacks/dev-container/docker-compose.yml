@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  dev-container:
+    image: anitvam/dev-container:latest
+    environment:
+      PUBLIC_KEY: ${PUBLIC_KEY}
+    deploy:
+      placement:
+        constraints:
+          - "node.hostname==${NODE}"
+    volumes:
+      - "data:/persistent"
+    ports:
+      - ${PORT}:22
+    working_dir: /persistent
+
+volumes:
+  data:
+    name: ${VOLUME}
+    

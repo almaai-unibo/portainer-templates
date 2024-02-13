@@ -2,6 +2,42 @@
   "version": "2",
   "templates": [
     {
+      "type": 2,
+      "title": "Development Container",
+      "description": "Ubuntu latest with pre-configured openssh-server, git, docker-in-docker",
+      "note": "Source code <a href=\"https://github.com/anitvam/dev-container\">here</a>",
+      "categories": ["server", "ssh", "git", "docker"],
+      "platform": "linux",
+      "logo": "https://www.dmuth.org/wp-content/uploads/2019/03/docker-logo.png",
+      "repository": {
+        "url": "https://github.com/almaai-unibo/portainer-templates",
+        "stackfile": "stacks/dev-container/docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "PUBLIC_KEY",
+          "label": "Public Key",
+          "description": "The public key used to log-in into the server."
+        },
+        {
+          "name": "NODE",
+          "label": "Node name",
+          "description": "The name of the node on which the container will be deployed.",
+          "default": "iris.apice.unibo.it"
+        },
+        {
+          "name": "VOLUME",
+          "label": "Persistent volume name",
+          "description": "Name of the persistent volume that will be attached to the container on the path /persistent"
+        },
+        {
+          "name": "PORT",
+          "label": "Port",
+          "description": "The port the SSH service will listen upon"
+        }
+      ]
+    },
+    {
       "type": 1,
       "title": "Registry",
       "description": "Docker image registry",
