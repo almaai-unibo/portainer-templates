@@ -20,12 +20,6 @@
           "description": "The public key used to log-in into the server."
         },
         {
-          "name": "NODE",
-          "label": "Node name",
-          "description": "The name of the node on which the container will be deployed.",
-          "default": "iris.apice.unibo.it"
-        },
-        {
           "name": "VOLUME",
           "label": "Persistent volume name",
           "description": "Name of the persistent volume that will be attached to the container on the path /persistent"

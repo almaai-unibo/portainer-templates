@@ -5,10 +5,6 @@ services:
     image: anitvam/dev-container:latest
     environment:
       PUBLIC_KEY: ${PUBLIC_KEY}
-    deploy:
-      placement:
-        constraints:
-          - "node.hostname==${NODE}"
     volumes:
       - "data:/persistent"
     ports:
@@ -18,4 +14,3 @@ services:
 volumes:
   data:
     name: ${VOLUME}
-    
