@@ -16,6 +16,10 @@ if [[ "${RESTARTABLE}" == "yes" ]]; then
     wrapper="run-one-constantly"
 fi
 
+/usr/bin/apt-get update
+/usr/bin/apt-get install -y openssh-server
+service ssh start
+
 python /install-stuff.py
 
 PWD_HASH="$(python /gen-pwd.py)"
