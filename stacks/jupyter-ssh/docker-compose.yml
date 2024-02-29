@@ -1,0 +1,64 @@
+version: '3.9'
+
+services:
+  # https://jupyter-docker-stacks.readthedocs.io/en/latest/using/selecting.html
+  jupyter:
+    image: jupyter/${NOTEBOOK_TYPE}-notebook:${NOTEBOOK_VERSION}
+    # https://jupyter-docker-stacks.readthedocs.io/en/latest/using/common.html#docker-options
+    user: root
+    configs:
+      - source: password_generator
+        target: /gen-pwd.py
+      - source: start_notebook
+        target: /start-notebook2.sh
+      - source: install_stuff
+        target: /install-stuff.py
+      - source: authorized_keys
+        target: /home/${USER}/.ssh/authorized_keys
+      - source: sshd_config
+        target: /etc/ssh/sshd_config
+    command: [ "/bin/bash", "/start-notebook2.sh" ]
+    environment:
+      NB_USER: ${USER}
+      CHOWN_HOME: 'yes'
+      GRANT_SUDO: 'yes'
+      FURTHER_APT_PACKAGES_TO_INSTALL: ${FURTHER_APT_PACKAGES}
+      FURTHER_PIP_PACKAGES_TO_INSTALL: ${FURTHER_PIP_PACKAGES}
+    volumes:
+      - "data:/home/${USER}/persistent"
+      - type: tmpfs
+        target: /dev/shm
+        tmpfs:
+           # size of shared memory in KiB (e.g. 131072 = 128 * 1024 = 128 MiB)
+           size: 131072
+    ports:
+      - ${PORT}:8888
+      - ${SSH_PORT}:22
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: 
+          - node.labels.capabilities.cpu==yes
+    secrets:
+      - jupyter_password
+secrets:
+  # mapped into /run/secrets/jupyter_password by default
+  jupyter_password:
+    external: true
+    name: ${PASSWORD_SECRET_NAME}
+volumes:
+  data:
+    name: ${VOLUME}
+configs:
+  password_generator:
+    file: ./gen-pwd.py
+  start_notebook:
+    file: ./start-notebook2.sh
+  install_stuff:
+    file: ./install-stuff.py
+  authorized_keys:
+    external: true
+    name: ${AUTHORIZED_KEYS_CONFIG_NAME}
+  sshd_config:
+    file: ./sshd_config
