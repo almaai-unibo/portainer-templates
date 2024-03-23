@@ -3,10 +3,6 @@ version: '3.9'
 services:
   dev-container:
     image: anitvam/dev-container:latest
-    deploy:
-      placement:
-        constraints:
-          - node.role==manager
     environment:
       PUBLIC_KEY: ${PUBLIC_KEY}
     volumes:
