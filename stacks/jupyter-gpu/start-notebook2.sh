@@ -24,7 +24,7 @@ fi
 
 if [[ -n "${FURTHER_PIP_PACKAGES_TO_INSTALL}" ]]; then
     echo "/opt/conda/bin/pip install ${FURTHER_PIP_PACKAGES_TO_INSTALL}"
-    /opt/conda/bin/pip ${FURTHER_PIP_PACKAGES_TO_INSTALL}
+    /opt/conda/bin/pip install ${FURTHER_PIP_PACKAGES_TO_INSTALL}
 fi
 
 PWD_HASH="$(python /gen-pwd.py)"
