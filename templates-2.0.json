@@ -1177,7 +1177,7 @@
           "name": "VERSION",
           "label": "Notebook version",
           "description": "Actual version of the cschranz/gpu-jupyter:${Notebook version} image. Default: latest.",
-          "default": "latest"
+          "default": "v1.8_cuda-12.5_ubuntu-22.04"
         },
         {
           "name": "USER",
