@@ -1226,7 +1226,7 @@
           "name": "VERSION",
           "label": "Notebook version",
           "description": "Actual version of the cschranz/gpu-jupyter:${Notebook version} image. Default: latest.",
-          "default": "v1.8_cuda-12.5_ubuntu-22.04"
+          "default": "v1.9_cuda-12.6_ubuntu-24.04_python-only"
         },
         {
           "name": "USER",
@@ -1251,12 +1251,14 @@
         {
           "name": "FURTHER_APT_PACKAGES",
           "label": "Further Ubuntu packages",
-          "description": "Space-separated list of Ubuntu packages to be installed in the container. Leave empty if not needed."
+          "description": "Space-separated list of Ubuntu packages to be installed in the container. Leave empty if not needed.",
+          "default": " "
         },
         {
           "name": "FURTHER_PIP_PACKAGES",
           "label": "Further Python packages",
-          "description": "Space separated list of Python packages to be installed in the container, via PIP. Leave empty if not needed."
+          "description": "Space separated list of Python packages to be installed in the container, via PIP. Leave empty if not needed.",
+          "default": " "
         }
       ]
     },

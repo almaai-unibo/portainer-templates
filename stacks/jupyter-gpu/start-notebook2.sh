@@ -2,6 +2,21 @@
 # Edited version from: /usr/local/bin/start-notebook.sh
 set -e
 
+# trim variable FURTHER_APT_PACKAGES_TO_INSTALL
+FURTHER_APT_PACKAGES_TO_INSTALL=$(echo "${FURTHER_APT_PACKAGES_TO_INSTALL}" | awk '{$1=$1; print}')
+if [[ -n "${FURTHER_APT_PACKAGES_TO_INSTALL}" ]]; then
+    /usr/bin/apt-get update
+    echo "/usr/bin/apt-get install -y ${FURTHER_APT_PACKAGES_TO_INSTALL}"
+    /usr/bin/apt-get install -y ${FURTHER_APT_PACKAGES_TO_INSTALL}
+fi
+
+# trim variable FURTHER_PIP_PACKAGES_TO_INSTALL
+FURTHER_PIP_PACKAGES_TO_INSTALL=$(echo "${FURTHER_PIP_PACKAGES_TO_INSTALL}" | awk '{$1=$1; print}')
+if [[ -n "${FURTHER_PIP_PACKAGES_TO_INSTALL}" ]]; then
+    echo "/opt/conda/bin/pip install ${FURTHER_PIP_PACKAGES_TO_INSTALL}"
+    /opt/conda/bin/pip install ${FURTHER_PIP_PACKAGES_TO_INSTALL}
+fi
+
 # The Jupyter command to launch
 # JupyterLab by default
 DOCKER_STACKS_JUPYTER_CMD="${DOCKER_STACKS_JUPYTER_CMD:=lab}"
@@ -14,17 +29,6 @@ fi
 wrapper=""
 if [[ "${RESTARTABLE}" == "yes" ]]; then
     wrapper="run-one-constantly"
-fi
-
-if [[ -n "${FURTHER_APT_PACKAGES_TO_INSTALL}" ]]; then
-    /usr/bin/apt-get update
-    echo "/usr/bin/apt-get install -y ${FURTHER_APT_PACKAGES_TO_INSTALL}" 
-    /usr/bin/apt-get install -y ${FURTHER_APT_PACKAGES_TO_INSTALL}
-fi
-
-if [[ -n "${FURTHER_PIP_PACKAGES_TO_INSTALL}" ]]; then
-    echo "/opt/conda/bin/pip install ${FURTHER_PIP_PACKAGES_TO_INSTALL}"
-    /opt/conda/bin/pip install ${FURTHER_PIP_PACKAGES_TO_INSTALL}
 fi
 
 PWD_HASH="$(python /gen-pwd.py)"
